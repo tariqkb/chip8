@@ -3,26 +3,15 @@ import XCTest
 
 final class i00eeTests: XCTestCase {
     
-    func test_setsPC() {
-        let cpu = mockCPU(pc: 0)
-        
-        XCTAssertEqual(cpu.registers.pc, 0x0000)
-    }
+    func test_setsPCAndDecrementsSP() {
+        let cpu = mockCPU(pc: 0, sp: 1, stack: [0x0001, 0x0002])
     
-    func test_setsProgramCounter() {
-        let cpu = mockCPU(pc: 0)
+        let topStackAddr = cpu.registers.stack[cpu.registers.sp]
         
-        cpu.run(instruction: .i1nnn(0x0ABC))
+        cpu.run(instruction: .i00ee)
         
-        XCTAssertEqual(cpu.registers.pc, 0x0ABC)
-    }
-    
-    func test_shouldOnlyUseLast12BitsForAddr() {
-        let cpu = mockCPU(pc: 0)
-        
-        cpu.run(instruction: .i1nnn(0xFFFF))
-        
-        XCTAssertEqual(cpu.registers.pc, 0x0FFF)
+        XCTAssertEqual(cpu.registers.pc, topStackAddr)
+        XCTAssertEqual(cpu.registers.sp, 0)
     }
 
 }
