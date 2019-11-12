@@ -6,7 +6,7 @@ enum Instruction {
      00E0 - CLS
      Clear the display.
      */
-    case i00e0
+    case cls
     
     /**
      00EE - RET
@@ -14,7 +14,7 @@ enum Instruction {
 
      The interpreter sets the program counter to the address at the top of the stack, then subtracts 1 from the stack pointer.
      */
-    case i00ee
+    case ret
     
     /**
      1nnn - JP addr
@@ -22,7 +22,7 @@ enum Instruction {
 
      The interpreter sets the program counter to nnn.
      */
-    case i1nnn(UInt16)
+    case jump(addr: UInt16)
     
     /**
      2nnn - CALL addr
@@ -30,7 +30,7 @@ enum Instruction {
 
      The interpreter increments the stack pointer, then puts the current PC on the top of the stack. The PC is then set to nnn.
      */
-    case i2nnn(addr: UInt16)
+    case call(addr: UInt16)
     
     /**
      3xkk - SE Vx, byte
@@ -38,7 +38,7 @@ enum Instruction {
 
      The interpreter compares register Vx to kk, and if they are equal, increments the program counter by 2.
      */
-    case i3xkk(UInt4, UInt8)
+    case seByte(_ vx: Register, byte: UInt8)
     
     /**
      4xkk - SNE Vx, byte
@@ -46,7 +46,17 @@ enum Instruction {
 
      The interpreter compares register Vx to kk, and if they are not equal, increments the program counter by 2
      */
-    case i4xkk(UInt4, UInt8)
+    case sneByte(_ vx: Register, byte: UInt8)
+    
+    /**
+     5xy0 - SE Vx, Vy
+     Skip next instruction if Vx = Vy.
+
+     The interpreter compares register Vx to register Vy, and if they are equal, increments the program counter by 2.
+     */
+    case se(_ vx: Register, _ vy: Register)
+    
+   
     
 }
 
