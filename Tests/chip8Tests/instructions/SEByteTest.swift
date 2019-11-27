@@ -4,7 +4,7 @@ import XCTest
 final class SEByteTests: XCTestCase {
     
     func testIncrementsV0Equal() throws {
-        let interp = mockInterpreter(v0: 0x01, pc: 0x000A)
+        var interp = mockInterpreter(v0: 0x01, pc: 0x000A)
         
         try interp.run(instruction: .seByte(.v0, byte: 0x01))
         
@@ -12,7 +12,7 @@ final class SEByteTests: XCTestCase {
     }
 
     func testIncrementsV0NotEqual() throws {
-        let interp = mockInterpreter(v0: 0x01, pc: 0x000A)
+        var interp = mockInterpreter(v0: 0x01, pc: 0x000A)
         
         try interp.run(instruction: .seByte(.v0, byte: 0x02))
         

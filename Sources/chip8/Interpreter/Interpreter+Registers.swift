@@ -1,18 +1,19 @@
 enum Register: Hashable {
     case v0
     case v1
+    case vf
 }
 
 extension Interpreter {
     subscript(_ register: Register) -> UInt8 {
         get {
-            guard let value = self.registers[register] else {
+            guard let value = self.v[register] else {
                 fatalError("register \(register) not initialized")
             }
             return value
         }
         set(newValue) {
-            self.registers[register] = newValue
+            self.v[register] = newValue
         }
     }
     
@@ -22,7 +23,7 @@ extension Interpreter {
         }
     }
     
-    func forwardPC() throws {
+    mutating func forwardPC() throws {
         self.pc += 2
         // todo - remove hard coded value
         if pc > 4096 {

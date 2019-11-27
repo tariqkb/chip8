@@ -4,7 +4,7 @@ import XCTest
 final class RETTests: XCTestCase {
     
     func testSetsPCAndDecrementsSP() throws {
-        let interp = mockInterpreter(pc: 0, sp: 1, stack: [0x0001, 0x0002])
+        var interp = mockInterpreter(pc: 0, sp: 1, stack: [0x0001, 0x0002])
     
         let topStackAddr = interp.topstack
         
