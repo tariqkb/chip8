@@ -1,6 +1,6 @@
 import XCTest
 
-import chip8Tests
+import Chip8Tests
 
 var tests = [XCTestCaseEntry]()
 tests += chip8Tests.allTests()

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "chip8"
-               BuildableName = "chip8"
-               BlueprintName = "chip8"
+               BlueprintIdentifier = "Chip8"
+               BuildableName = "Chip8"
+               BlueprintName = "Chip8"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "chip8Tests"
-               BuildableName = "chip8Tests"
-               BlueprintName = "chip8Tests"
+               BlueprintIdentifier = "Chip8LibTests"
+               BuildableName = "Chip8LibTests"
+               BlueprintName = "Chip8LibTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Chip8Lib"
+               BuildableName = "Chip8Lib"
+               BlueprintName = "Chip8Lib"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,11 +60,31 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "chip8Tests"
-               BuildableName = "chip8Tests"
-               BlueprintName = "chip8Tests"
+               BlueprintIdentifier = "Chip8LibTests"
+               BuildableName = "Chip8LibTests"
+               BlueprintName = "Chip8LibTests"
                ReferencedContainer = "container:">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ClearScreenTests/test()">
+               </Test>
+               <Test
+                  Identifier = "DrawTests/test()">
+               </Test>
+               <Test
+                  Identifier = "LoadIWithLocationOfSpriteInTests/test()">
+               </Test>
+               <Test
+                  Identifier = "SkipIfKeypressTests/test()">
+               </Test>
+               <Test
+                  Identifier = "SkipIfNotKeypressTests/test()">
+               </Test>
+               <Test
+                  Identifier = "WaitForKeypressTests/test()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>
@@ -64,6 +98,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "Chip8"
+            BuildableName = "Chip8"
+            BlueprintName = "Chip8"
+            ReferencedContainer = "container:">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -71,15 +115,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "chip8"
-            BuildableName = "chip8"
-            BlueprintName = "chip8"
+            BlueprintIdentifier = "Chip8"
+            BuildableName = "Chip8"
+            BlueprintName = "Chip8"
             ReferencedContainer = "container:">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
