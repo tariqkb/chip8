@@ -4,7 +4,7 @@ import XCTest
 final class XorTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 0b00010100, v1: 0b00000101)
+        let interp = mockInterpreter(v0: 0b00010100, v1: 0b00000101)
         
         interp.run(instruction: .xor(.v0, .v1))
         

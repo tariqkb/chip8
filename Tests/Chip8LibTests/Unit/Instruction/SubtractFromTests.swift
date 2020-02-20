@@ -4,7 +4,7 @@ import XCTest
 final class SubtractFromTests: XCTestCase {
     
     func testNoBorrow() throws {
-        var interp = mockInterpreter(v0: 200, v1: 100, vf: 1)
+        let interp = mockInterpreter(v0: 200, v1: 100, vf: 1)
         
         interp.run(instruction: .subtractFrom(.v0, .v1))
         
@@ -14,7 +14,7 @@ final class SubtractFromTests: XCTestCase {
     }
     
     func testBorrow() throws {
-        var interp = mockInterpreter(v0: 100, v1: 200, vf: 0)
+        let interp = mockInterpreter(v0: 100, v1: 200, vf: 0)
         
         interp.run(instruction: .subtractFrom(.v0, .v1))
         

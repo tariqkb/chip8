@@ -48,6 +48,34 @@
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CGLFW3"
+               BuildableName = "CGLFW3"
+               BlueprintName = "CGLFW3"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SDL2"
+               BuildableName = "SDL2"
+               BlueprintName = "SDL2"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -66,15 +94,6 @@
                ReferencedContainer = "container:">
             </BuildableReference>
             <SkippedTests>
-               <Test
-                  Identifier = "ClearScreenTests/test()">
-               </Test>
-               <Test
-                  Identifier = "DrawTests/test()">
-               </Test>
-               <Test
-                  Identifier = "LoadIWithLocationOfSpriteInTests/test()">
-               </Test>
                <Test
                   Identifier = "SkipIfKeypressTests/test()">
                </Test>

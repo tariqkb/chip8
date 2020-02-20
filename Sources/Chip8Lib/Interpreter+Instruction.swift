@@ -2,22 +2,54 @@ enum ProgramCounterOperation {
     case set(to: UInt16)
     case skip
     case next(from: UInt16? = nil)
+    case wait
 }
+
+let clockSpeed = 500 // 500 MHz
 
 extension Interpreter {
     
-    mutating func run() {
+    func run() {
         pc = 0x200
-        
-        while pc < memory.count {
-            print("running \(currentInstruction) at 0x\(String(pc, radix: 16))")
-            run(instruction: currentInstruction)
-        }
-        
-        print("terminated")
+           
+        while runNext() {}
     }
     
-    mutating func run(instruction: Instruction) {
+    public func update(fixedRate: Int, keyPressed: Key?) -> Bool {
+        self.keyCurrentlyPressed = keyPressed
+        
+        var cycles = 0
+        
+        while cycles < clockSpeed / fixedRate {
+            if !runNext() { return false }
+            cycles += 1
+        }
+        
+        if(delay > 0) {
+            delay -= 1
+        }
+        
+        if(sound > 0) {
+            sound -= 1
+            print("BEEP") // TODO - make a sound
+        }
+        
+        return true
+    }
+    
+    public func runNext() -> Bool {
+        guard pc < memory.count else {
+            print("terminated")
+            return false
+        }
+        
+        print("running \(currentInstruction) at 0x\(String(pc, radix: 16))")
+        run(instruction: currentInstruction)
+        
+        return true
+    }
+    
+    func run(instruction: Instruction) {
         var pcOperation: ProgramCounterOperation = .next()
         
         switch(instruction) {
@@ -25,7 +57,7 @@ extension Interpreter {
             break
             
         case .clearScreen:
-            break
+            clearScreen()
             
         case .returnFromSubroutine:
             pcOperation = .next(from: stack[sp])
@@ -58,7 +90,7 @@ extension Interpreter {
             self[vx] = byte
             
         case .addWithInt(let vx, let byte):
-            self[vx] += byte
+            self[vx] &+= byte //add overflow
             
         case .load(let vx, let vy):
             self[vx] = self[vy]
@@ -113,20 +145,33 @@ extension Interpreter {
         case .loadWithRandom(let vx, let bitmask):
             self[vx] = UInt8.random(in: 0...255) & bitmask
             
-        case .draw:
-            break
+        case .draw(let vx, let vy, let nibble):
+            let bytes = (0..<nibble).map { memory[Int(i + UInt16($0))] }
+            self.draw(x: Int(self[vx]), y: Int(self[vy]), bytes: bytes)
             
         case .skipIfKeypress(let vx):
-            break
+            if let key = Key(rawValue: Int(self[vx])),
+                let pressed = keypresses[key],
+                pressed {
+                pcOperation = .skip
+            }
             
         case .skipIfNotKeypress(let vx):
-            break
+            if let key = Key(rawValue: Int(self[vx])),
+                let pressed = keypresses[key],
+                !pressed {
+                pcOperation = .skip
+            }
             
         case .loadWithDelay(let vx):
             self[vx] = delay
             
         case .waitForKeypress(let vx):
-            break
+            if let keypress = self.keyCurrentlyPressed {
+                self[vx] = UInt8(keypress.rawValue)
+            } else {
+                pcOperation = .wait
+            }
             
         case .loadDelayWith(let vx):
             delay = self[vx]
@@ -138,7 +183,7 @@ extension Interpreter {
             i += UInt16(self[vx])
             
         case .loadIWithLocationOfSpriteIn(let vx):
-            break
+            i = UInt16(5 * self[vx])
             
         case .loadDecimalOf(let vx):
             let intermediate = self[vx] / 10
@@ -164,6 +209,8 @@ extension Interpreter {
             pc += 4
         case .next(let from):
             pc = (from ?? pc) + 2
+        case .wait:
+            break
         }
         
     }

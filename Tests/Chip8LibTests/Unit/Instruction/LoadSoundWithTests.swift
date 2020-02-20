@@ -4,7 +4,7 @@ import XCTest
 final class LoadSoundWithTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 1, sound: 10)
+        let interp = mockInterpreter(v0: 1, sound: 10)
         
         interp.run(instruction: .loadSoundWith(.v0))
         

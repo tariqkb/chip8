@@ -4,7 +4,7 @@ import XCTest
 final class LoadDecimalOfTests: XCTestCase {
     
     func test3Digits() throws {
-        var interp = mockInterpreter(v0: 255, i: 0x201)
+        let interp = mockInterpreter(v0: 255, i: 0x201)
         
         interp.run(instruction: .loadDecimalOf(.v0))
         
@@ -14,7 +14,7 @@ final class LoadDecimalOfTests: XCTestCase {
     }
     
     func test2Digits() throws {
-        var interp = mockInterpreter(v0: 25, i: 0x201)
+        let interp = mockInterpreter(v0: 25, i: 0x201)
         
         interp.run(instruction: .loadDecimalOf(.v0))
         
@@ -24,7 +24,7 @@ final class LoadDecimalOfTests: XCTestCase {
     }
     
     func test1Digit() throws {
-        var interp = mockInterpreter(v0: 2, i: 0x201)
+        let interp = mockInterpreter(v0: 2, i: 0x201)
         
         interp.run(instruction: .loadDecimalOf(.v0))
         

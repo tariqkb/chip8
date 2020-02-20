@@ -78,6 +78,25 @@ extension Instruction {
             fatalError("can't parse instruction 0x\(String(rawValue, radix: 16))")
         }
     }
+    
+    var bytes: UInt16 {
+        switch self {
+        case .noop:
+            return 0x0000
+        case .clearScreen:
+            return 0x00E0
+        case .returnFromSubroutine:
+            return 0x00EE
+        case .jump(let addr):
+            return (0x1 << 12) + addr
+        case .call(let addr):
+            return (0x2 << 12) + addr
+//        case .skipIfEqualsInt(let vx, let byte):
+//            return UInt16((0x4 << 12) + (vx.rawValue << 8) + byte)
+        default:
+            return 0
+        }
+    }
 }
 
 func nibble(_ nib: UInt16, from value: UInt16) -> UInt4 {

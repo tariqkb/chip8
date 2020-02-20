@@ -4,11 +4,12 @@ import XCTest
 final class LoadIWithLocationOfSpriteInTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 0x01, pc: 0x000A)
+        let interp = mockInterpreter(v0: 0x01)
         
         interp.run(instruction: .loadIWithLocationOfSpriteIn(.v0))
         
-        XCTAssertEqual(true, false)
+        XCTAssertEqual(interp[.v0], 0x1)
+        XCTAssertEqual(interp.i, 0x5)
     }
     
     func testParse() {

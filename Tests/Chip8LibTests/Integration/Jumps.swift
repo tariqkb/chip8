@@ -4,9 +4,9 @@ import XCTest
 final class JumpsTests: XCTestCase {
     
     func test() {
-        var interpreter = Interpreter()
+        let interpreter = Interpreter()
 
-        interpreter.load(memory: mockMemory(instructions: [
+        interpreter.load(program: Program(instructionBytes: [
             0x220C, // Call subroutine 1            | 0x200 CALL SUBROUTINE 1
             0x3102, // Skip next if v1 = 2          | 0x202 v0=0 v1=2 v2=3
             0x6001, // Load v0 with 0x1             | 0x204 NOT EXECUTED

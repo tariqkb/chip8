@@ -4,7 +4,7 @@ import XCTest
 final class SkipIfNotEqualsIntTests: XCTestCase {
     
     func testIncrementsV0NotEqual() throws {
-        var interp = mockInterpreter(v0: 0x01, pc: 0x000A)
+        let interp = mockInterpreter(v0: 0x01, pc: 0x000A)
         
         interp.run(instruction: .skipIfNotEqualsInt(.v0, 0x02))
         
@@ -12,7 +12,7 @@ final class SkipIfNotEqualsIntTests: XCTestCase {
     }
     
     func testNotIncrementsV0Equal() throws {
-        var interp = mockInterpreter(v0: 0x01, pc: 0x000A)
+        let interp = mockInterpreter(v0: 0x01, pc: 0x000A)
         
         interp.run(instruction: .skipIfNotEqualsInt(.v0, 0x01))
         

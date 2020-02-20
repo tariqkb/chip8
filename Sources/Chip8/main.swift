@@ -1,6 +1,7 @@
 import Chip8Lib
 
-var interpreter = Interpreter()
+var program = try Program(ch8FilePath: "games/Tank.ch8")
+program.withPause()
 
-interpreter.load(memory: [])
-
+print("starting game engine")
+let gameEngine = GameEngine(program: program)

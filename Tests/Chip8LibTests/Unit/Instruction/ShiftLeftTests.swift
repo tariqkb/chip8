@@ -4,7 +4,7 @@ import XCTest
 final class ShiftLeftTests: XCTestCase {
     
     func testNoMSB() throws {
-        var interp = mockInterpreter(v0: 0b011, vf: 1)
+        let interp = mockInterpreter(v0: 0b011, vf: 1)
         
         interp.run(instruction: .shiftLeft(.v0))
         
@@ -13,7 +13,7 @@ final class ShiftLeftTests: XCTestCase {
     }
     
     func testWithMSB() throws {
-        var interp = mockInterpreter(v0: 0b10000001, vf: 0)
+        let interp = mockInterpreter(v0: 0b10000001, vf: 0)
         
         interp.run(instruction: .shiftLeft(.v0))
         

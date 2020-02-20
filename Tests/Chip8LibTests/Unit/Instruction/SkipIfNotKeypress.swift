@@ -4,7 +4,7 @@ import XCTest
 final class SkipIfNotKeypressTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 0x01, pc: 0x000A)
+        let interp = mockInterpreter(v0: 0x01, pc: 0x000A)
         
         interp.run(instruction: .skipIfNotKeypress(.v0))
         

@@ -4,7 +4,7 @@ import XCTest
 final class LoadWithDelayTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 1, delay: 2)
+        let interp = mockInterpreter(v0: 1, delay: 2)
         
         interp.run(instruction: .loadWithDelay(.v0))
         

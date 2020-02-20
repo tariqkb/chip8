@@ -4,7 +4,7 @@ import XCTest
 final class NoopTests: XCTestCase {
     
     func test() {
-        var interp = mockInterpreter(v0: 0x1)
+        let interp = mockInterpreter(v0: 0x1)
         
         interp.run(instruction: .noop)
         

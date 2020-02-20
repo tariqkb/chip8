@@ -4,7 +4,7 @@ import XCTest
 final class LoadIntoMemoryV0ToTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 1, v1: 2, i: 0x201)
+        let interp = mockInterpreter(v0: 1, v1: 2, i: 0x201)
         
         interp.run(instruction: .loadIntoMemoryV0To(.v1))
         

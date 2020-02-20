@@ -4,7 +4,7 @@ import XCTest
 final class JumpToV0Tests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 1, v1: 2, pc: 0)
+        let interp = mockInterpreter(v0: 1, v1: 2, pc: 0)
         
         interp.run(instruction: .jumpToV0(plus: 5))
         

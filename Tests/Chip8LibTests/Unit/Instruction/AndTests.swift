@@ -4,7 +4,7 @@ import XCTest
 final class AndTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(v0: 0b001101, v1: 0b111000)
+        let interp = mockInterpreter(v0: 0b001101, v1: 0b111000)
         
         interp.run(instruction: .and(.v0, .v1))
         

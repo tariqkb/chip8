@@ -2,6 +2,33 @@
   "object": {
     "pins": [
       {
+        "package": "SGLImage",
+        "repositoryURL": "https://github.com/SwiftGL/Image.git",
+        "state": {
+          "branch": null,
+          "revision": "7aa96e7548baa8d06619b97a1906012193f6eff8",
+          "version": "2.2.0"
+        }
+      },
+      {
+        "package": "SGLMath",
+        "repositoryURL": "https://github.com/SwiftGL/Math.git",
+        "state": {
+          "branch": null,
+          "revision": "8bdd2e542f28828d0c224c1ea8e046c6f652ec40",
+          "version": "3.0.0"
+        }
+      },
+      {
+        "package": "SGLOpenGL",
+        "repositoryURL": "https://github.com/SwiftGL/OpenGL.git",
+        "state": {
+          "branch": null,
+          "revision": "70b765437206a2b8b45c373bb70abbeb61004325",
+          "version": "3.1.1"
+        }
+      },
+      {
         "package": "UInt4",
         "repositoryURL": "https://github.com/tbugrara/UInt4",
         "state": {

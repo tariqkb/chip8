@@ -4,7 +4,7 @@ import XCTest
 final class LoadWithRandomTests: XCTestCase {
     
     func test0Bitmask() throws {
-        var interp = mockInterpreter(v0: 0x01)
+        let interp = mockInterpreter(v0: 0x01)
         
         interp.run(instruction: .loadWithRandom(.v0, bitmask: 0b00000000))
         

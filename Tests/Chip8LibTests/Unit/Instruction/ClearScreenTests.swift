@@ -4,11 +4,12 @@ import XCTest
 final class ClearScreenTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter()
-        
+        let interp = mockInterpreter(v0: 0, v1: 0, displayWidth: 8, displayHeight: 1)
+        interp.display = [[1,1,1,1,1,1,1,1]]
+
         interp.run(instruction: .clearScreen)
         
-        XCTAssertEqual(true, false)
+        XCTAssertEqual(interp.display, [[0,0,0,0,0,0,0,0]])
     }
     
     func testParse() {

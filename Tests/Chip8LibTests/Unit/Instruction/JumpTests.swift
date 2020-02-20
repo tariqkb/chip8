@@ -4,7 +4,7 @@ import XCTest
 final class JumpTests: XCTestCase {
     
     func testProgramCounter() throws {
-        var interp = mockInterpreter(pc: 0)
+        let interp = mockInterpreter(pc: 0)
         
         interp.run(instruction: .jump(addr: 0x0ABC))
         

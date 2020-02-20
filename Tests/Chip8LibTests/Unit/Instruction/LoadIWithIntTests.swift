@@ -4,7 +4,7 @@ import XCTest
 final class loadIWithIntTests: XCTestCase {
     
     func test() throws {
-        var interp = mockInterpreter(i: 1)
+        let interp = mockInterpreter(i: 1)
         
         interp.run(instruction: .loadIWithInt(2))
         
