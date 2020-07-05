@@ -39,12 +39,16 @@ class GameEngine {
                 }
             }
             
-            if !interpreter.update(fixedRate: Int(graphics.displayMode.refresh_rate),
-                                   keyPressed: keyPressed) {
-                break gameLoop
+            if let interpreterEvent = interpreter.update(fixedRate: graphics.refreshRate,
+                                                         keyPressed: keyPressed) {
+                switch interpreterEvent {
+                case .quit:
+                    break gameLoop
+                case .draw:
+                    graphics.handle(interpreter: interpreter)
+                }
             }
             
-            graphics.handle(interpreter: interpreter)
             audio.handle(interpreter: interpreter)
             
             keyPressed = nil

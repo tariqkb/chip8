@@ -8,20 +8,33 @@ enum ProgramCounterOperation {
 let clockSpeed = 500 // 500 MHz
 
 extension Interpreter {
+    public enum Event {
+        case quit
+        case draw
+    }
     
     func run() {
         pc = 0x200
            
-        while runNext() {}
+        while let event = runNext(), event != .quit {}
     }
     
-    public func update(fixedRate: Int, keyPressed: Key?) -> Bool {
+    public func update(fixedRate: Int, keyPressed: Key?) -> Event? {
         self.keyCurrentlyPressed = keyPressed
         
-        var cycles = 0
+        var event: Event? = nil
         
+        var cycles = 0
         while cycles < clockSpeed / fixedRate {
-            if !runNext() { return false }
+            switch runNext() {
+            case .quit:
+                return .quit
+            case .draw:
+                event = .draw
+            case nil:
+                break;
+            }
+            
             cycles += 1
         }
         
@@ -34,23 +47,22 @@ extension Interpreter {
             print("BEEP") // TODO - make a sound
         }
         
-        return true
+        return event
     }
     
-    public func runNext() -> Bool {
+    public func runNext() -> Event? {
         guard pc < memory.count else {
             print("terminated")
-            return false
+            return .quit
         }
         
-        print("running \(currentInstruction) at 0x\(String(pc, radix: 16))")
-        run(instruction: currentInstruction)
-        
-        return true
+//        print("running \(currentInstruction) at 0x\(String(pc, radix: 16))")
+        return run(instruction: currentInstruction)
     }
     
-    func run(instruction: Instruction) {
+    func run(instruction: Instruction) -> Event? {
         var pcOperation: ProgramCounterOperation = .next()
+        var event: Event? = nil
         
         switch(instruction) {
         case .noop:
@@ -148,6 +160,7 @@ extension Interpreter {
         case .draw(let vx, let vy, let nibble):
             let bytes = (0..<nibble).map { memory[Int(i + UInt16($0))] }
             self.draw(x: Int(self[vx]), y: Int(self[vy]), bytes: bytes)
+            event = .draw
             
         case .skipIfKeypress(let vx):
             if let key = Key(rawValue: Int(self[vx])),
@@ -212,6 +225,7 @@ extension Interpreter {
         case .wait:
             break
         }
-        
+     
+        return event
     }
 }

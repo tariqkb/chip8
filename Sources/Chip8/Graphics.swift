@@ -21,6 +21,12 @@ class Graphics {
         }
     }
     
+    var refreshRate: Int {
+        get {
+            return Int(displayMode.refresh_rate)
+        }
+    }
+    
     init() {
         
         //let X_POS = Int32(SDL_WINDOWPOS_UNDEFINED_MASK|0), Y_POS=Int32(SDL_WINDOWPOS_UNDEFINED_MASK|0)

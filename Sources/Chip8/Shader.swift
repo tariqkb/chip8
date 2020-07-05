@@ -87,7 +87,7 @@ private func compileShader(id shader: GLuint, source: String) -> OpenGLResult<Vo
     source.withCString {
         var s = [$0]
         glShaderSource(shader: shader, count: 1, string: &s, length: nil)
-    }
+}
     glCompileShader(shader)
     
     // check if compilation succeeded
